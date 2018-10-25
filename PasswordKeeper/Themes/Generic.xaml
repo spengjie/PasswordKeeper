@@ -1,0 +1,81 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:PasswordKeeper">
+    <Style x:Key="DefaultPasswordBoxStyle" TargetType="PasswordBox" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <Setter Property="Width" Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=ActualHeight}"/>
+    </Style>
+    <Style TargetType="{x:Type local:FourGridsPasswordBox}">
+        <Setter Property="PasswordBoxSpace" Value="12"/>
+        <Setter Property="PasswordBoxStyle" Value="{StaticResource DefaultPasswordBoxStyle}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:FourGridsPasswordBox}">
+                    <Border x:Name="Bd"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}" Focusable="True">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <PasswordBox x:Name="PART_Password1" CaretBrush="Transparent" MaxLength="1" 
+                                         Style="{TemplateBinding PasswordBoxStyle}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="{TemplateBinding Height}">
+                            </PasswordBox>
+                            <PasswordBox x:Name="PART_Password2" Focusable="False" CaretBrush="Transparent" MaxLength="1"
+                                         Style="{TemplateBinding PasswordBoxStyle}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="{TemplateBinding Height}">
+                            </PasswordBox>
+                            <PasswordBox x:Name="PART_Password3" Focusable="False" CaretBrush="Transparent" MaxLength="1"
+                                         Style="{TemplateBinding PasswordBoxStyle}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="{TemplateBinding Height}">
+                            </PasswordBox>
+                            <PasswordBox x:Name="PART_Password4" Focusable="False" CaretBrush="Transparent" MaxLength="1"
+                                         Style="{TemplateBinding PasswordBoxStyle}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="{TemplateBinding Height}">
+                            </PasswordBox>
+                        </StackPanel>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" TargetName="Bd" Value="0.56"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="{x:Type local:CopyableTextBlock}">
+        <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:CopyableTextBlock}">
+                    <Border x:Name="Bd"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}" Focusable="True">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Border x:Name="Text_Bd" Background="Transparent">
+                                <TextBlock x:Name="PART_TextBlock"
+                                           Text="{TemplateBinding Text}"
+                                           TextAlignment="{TemplateBinding TextAlignment}"
+                                           TextDecorations="{TemplateBinding TextDecorations}"
+                                           TextWrapping="{TemplateBinding TextWrapping}"
+                                           TextTrimming="{TemplateBinding TextTrimming}"
+                                           VerticalAlignment="Center"
+                                           />
+                            </Border>
+                            <Button x:Name="PART_CopyButton" Grid.Column="1" Content="Copy" Visibility="Collapsed" Style="{TemplateBinding CopyButtonStyle}"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" TargetName="Bd" Value="0.56"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Visibility" TargetName="PART_CopyButton" Value="Visible"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
