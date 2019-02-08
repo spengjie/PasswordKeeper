@@ -987,8 +987,8 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Text="{Binding Name}" Grid.Column="0" VerticalAlignment="Center" Style="{StaticResource {x:Type TextBlock}}" ToolTip="{Binding BoxFilePath}" local:AlwaysShowToolTipDependencyClass.AlwaysShowToolTip="True"/>
-            <Button x:Name="btnCloseBox" Grid.Column="1" Width="24" Height="24" HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding DataContext.CloseBoxCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}" CommandParameter="{Binding}" Visibility="Collapsed" Style="{StaticResource RedButtonStyle}" local:PathDataDependencyClass.Path="{Binding Source={StaticResource CloseIcon}}"/>
+            <TextBlock Text="{Binding Name}" Grid.Column="0" VerticalAlignment="Center" Style="{StaticResource {x:Type TextBlock}}" ToolTip="{Binding BoxFilePath}"/>
+            <Button x:Name="btnCloseBox" Grid.Column="1" Width="24" Height="24" HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding DataContext.CloseBoxCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}" CommandParameter="{Binding}" Visibility="Collapsed" Style="{DynamicResource ClearButtonStyle}"/>
         </Grid>
         <DataTemplate.Triggers>
             <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TabItem}}, Path=IsMouseOver}" Value="True">
@@ -1011,11 +1011,11 @@
                 </Grid.ColumnDefinitions>
                 <local:FourGridsPasswordBox x:Name="LoginPasswordBox" Grid.Column="1" Grid.Row="1" Height="36" Width="180" VerticalAlignment="Center" HorizontalAlignment="Center" Command="{Binding LoginCommand}" PasswordBoxStyle="{DynamicResource PasswordBoxStyle}">
                 </local:FourGridsPasswordBox>
-                <Label Grid.Column="2" Grid.Row="1" Height="36" Width="36" HorizontalAlignment="Left" Visibility="{Binding Converter={StaticResource EmptyStringToVisibilityConverter}, Path=BoxInfo.LoginPrompt}" local:AlwaysShowToolTipDependencyClass.AlwaysShowToolTip="True" ToolTip="{Binding BoxInfo.LoginPrompt}">
+                <TextBlock Grid.Column="2" Grid.Row="1" Height="36" Width="36" HorizontalAlignment="Left" Visibility="{Binding Converter={StaticResource EmptyStringToVisibilityConverter}, Path=BoxInfo.LoginPrompt}" local:AlwaysShowToolTipDependencyClass.AlwaysShowToolTip="True" ToolTip="{Binding BoxInfo.LoginPrompt}">
                     <Viewbox>
                         <Path Data="{Binding Source={StaticResource InfoIcon}}" Fill="{StaticResource MainColorBrush}"></Path>
                     </Viewbox>
-                </Label>
+                </TextBlock>
                 <Label x:Name="LoginError" Grid.Column="1" Grid.Row="2" Height="36" Width="180" Margin="0,10,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="{Binding LoginError}" Background="#FFCB1C15" Foreground="White" Visibility="{Binding Converter={StaticResource EmptyStringToVisibilityConverter}, Path=LoginError}"/>
                 <Grid.Style>
                     <Style TargetType="Grid">
